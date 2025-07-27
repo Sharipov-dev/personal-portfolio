@@ -1,5 +1,5 @@
 const API_CONFIG = {
-  BASE_URL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3005',
+  BASE_URL: 'https://www.arthurportfolio.com',
   ENDPOINTS: {
     VALUES: '/values/values.json',
     IMAGES: '/images/me.jpg'
