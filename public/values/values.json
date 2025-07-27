@@ -1,0 +1,42 @@
+{
+    "navigation": {
+        "aboutMe": "About Me",
+        "experience": "Experience",
+        "projects": "Projects",
+        "contact": "Contact"
+    },
+    "aboutMeText": {
+        "greetingFirst": "Hello,",
+        "greetingSecond": "I am Arthur Sharipov, software developer with 1+ year of experience.",
+        "greetingThird": "If you need a skilled and reliable developer to deliver high-quality applications, I am exactly who you are looking for!",
+        "greetingFourth": "Let’s connect and bring your ideas to life!"
+    },
+    "experienceText": {
+        "title": "Experience",
+        "viewLinkedIn": "View LinkedIn",
+        "linkedInLink": "https://www.linkedin.com/in/artur-sharipov-2105b0288/",
+        "experience": [
+            {
+                "company": "Agile Creative Labs",
+                "position": "Software Developer Intern",
+                "date": "March 2025 - June 2025",
+                "location": "Ottawa, Canada",
+                "description": "At Agile Creative Labs, I worked part-time as a Software Developer Intern, where I got to build real tools that people actually used. I created RESTful APIs in Node.js with a MySQL backend to manage product data and track user adventures. I also integrated an AI model from Hugging Face by writing a REST API layer around it, which made sure responses stayed snappy, usually under 100ms. One of my favorite parts was setting up a Java plugin to trim media files and designing a responsive UI with JavaScript and jQuery—it ended up cutting down the team’s manual editing time by nearly half."
+            },
+            {
+                "company": "Skill Squirrel",
+                "position": "Junior Frontend Developer (Co-op)",
+                "date": "January 2025 - May 2025",
+                "location": "Mississauga, Canada",
+                "description": "At Skill Squirrel, I spent most of my time building and integrating responsive UI components using React and JavaScript. It was a hands-on role where I got to improve the front-end experience and contribute directly to the product. One of the highlights was helping the team save over $10,000 in project costs during the term just by developing components in-house instead of outsourcing."
+            },
+            {
+                "company": "Halyk Bank",
+                "position": "Backend Developer Intern",
+                "date": "June 2024 - September 2024",
+                "location": "Almaty, Kazakhstan",
+                "description": "At Halyk Bank, I worked on projects that directly impacted performance and reliability for tens of thousands of users. I built a borrower-notification reporting service using Kafka to stream events in real time, which cut alert delivery time from nearly 2 minutes to under 5 seconds for about 50,000 borrowers a day. I also created a full-stack Java log viewer with Spring MVC and Thymeleaf, adding backend pagination and search filters that made debugging large log sets 60% faster. One of the biggest wins was refactoring a legacy Spring Boot module by using Java Streams, caching, and async calls, I doubled its speed and reduced CPU usage by around 40% in load tests. I also wrote unit and integration tests with JUnit and Mockito, hitting 85% code coverage and catching two bugs before they made it to QA."
+            }
+        ]
+    }
+}
