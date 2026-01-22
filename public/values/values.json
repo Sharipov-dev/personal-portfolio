@@ -17,11 +17,18 @@
         "linkedInLink": "https://www.linkedin.com/in/artur-sharipov-2105b0288/",
         "experience": [
             {
+                "company": "Borderworx Logistics",
+                "position": "Software Developer Co-op (Part-time)",
+                "date": "September 2025 - December 2025",
+                "location": "Ontario, Canada",
+                "description": "At Borderworx Logistics, I developed a responsive company website using Next.js, React, HTML, and CSS, significantly improving the company's online presence and client engagement. I built a full-stack Warehouse Management System (WMS) using Next.js for the frontend and Node.js with Express for the backend to efficiently manage inventory, shipments, and warehouse operations. I designed and integrated a scalable database using PostgreSQL/MongoDB, ensuring accurate tracking of products, orders, and logistics data across the entire supply chain."
+            },
+            {
                 "company": "Agile Creative Labs",
-                "position": "Software Developer Intern",
-                "date": "March 2025 - June 2025",
+                "position": "Software Developer Intern (Part-time)",
+                "date": "March 2025 - May 2025",
                 "location": "Ottawa, Canada",
-                "description": "At Agile Creative Labs, I worked part-time as a Software Developer Intern, where I got to build real tools that people actually used. I created RESTful APIs in Node.js with a MySQL backend to manage product data and track user adventures. I also integrated an AI model from Hugging Face by writing a REST API layer around it, which made sure responses stayed snappy, usually under 100ms. One of my favorite parts was setting up a Java plugin to trim media files and designing a responsive UI with JavaScript and jQuery—it ended up cutting down the team’s manual editing time by nearly half."
+                "description": "At Agile Creative Labs, I worked part-time as a Software Developer Intern with Riipen platform (sponsored by Canadian government), where I got to build real tools that people actually used. I created RESTful APIs in Node.js with a MySQL backend to manage product data and track user adventures. I also integrated an AI model from Hugging Face by writing a REST API layer around it, which made sure responses stayed snappy, usually under 100ms. One of my favorite parts was setting up a Java plugin to trim media files and designing a responsive UI with JavaScript and jQuery—it ended up cutting down the team's manual editing time by nearly half."
             },
             {
                 "company": "Skill Squirrel",

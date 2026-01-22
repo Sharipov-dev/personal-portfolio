@@ -37,6 +37,12 @@ const PixelRoom = ({ greetingText }: PixelRoomProps) => {
     const [isLoaded, setIsLoaded] = useState(false);
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const sectionRef = useRef<HTMLElement>(null);
+    const [typedText, setTypedText] = useState('');
+    const fullText = 'Hello, I am ';
+    const nameText = 'Arthur Sharipov';
+    const [typedName, setTypedName] = useState('');
+    const [isTypingComplete, setIsTypingComplete] = useState(false);
+    const [showName, setShowName] = useState(false);
 
     // Define planets
     const planets: Planet[] = [
@@ -90,6 +96,33 @@ const PixelRoom = ({ greetingText }: PixelRoomProps) => {
         setStars(newStars);
         setIsLoaded(true);
     }, []);
+
+    // Typing effect for "Hello, I am "
+    useEffect(() => {
+        if (typedText.length < fullText.length) {
+            const timeout = setTimeout(() => {
+                setTypedText(fullText.slice(0, typedText.length + 1));
+            }, 100); // Speed of typing
+            return () => clearTimeout(timeout);
+        } else if (!showName) {
+            // Show name after "Hello, I am " is typed
+            setTimeout(() => {
+                setShowName(true);
+            }, 300);
+        }
+    }, [typedText, fullText, showName]);
+
+    // Typing effect for name
+    useEffect(() => {
+        if (showName && typedName.length < nameText.length) {
+            const timeout = setTimeout(() => {
+                setTypedName(nameText.slice(0, typedName.length + 1));
+            }, 100);
+            return () => clearTimeout(timeout);
+        } else if (showName && typedName.length === nameText.length) {
+            setIsTypingComplete(true);
+        }
+    }, [showName, typedName, nameText]);
 
     // Parallax effect - mouse
     useEffect(() => {
@@ -191,9 +224,18 @@ const PixelRoom = ({ greetingText }: PixelRoomProps) => {
                         </div>
 
                         <h1 className="heading-xl mb-6">
-                            <span className="text-[var(--text-primary)]">{greetingText.greetingFirst}</span>
-                            <br />
-                            <span className="gradient-text-space">Arthur Sharipov</span>
+                            <span className="text-[var(--text-primary)] text-glow">
+                                {typedText}
+                            </span>
+                            {showName && (
+                                <>
+                                    <br />
+                                    <span className="gradient-text-space">
+                                        {typedName}
+                                    </span>
+                                </>
+                            )}
+                            <span className="typing-cursor">|</span>
                         </h1>
 
                         <p className="text-body-lg mb-4">
@@ -222,11 +264,6 @@ const PixelRoom = ({ greetingText }: PixelRoomProps) => {
 
                     {/* Photo with space frame */}
                     <div className="relative flex-shrink-0">
-                        {/* Cosmic rings around photo */}
-                        <div className="cosmic-ring-1" />
-                        <div className="cosmic-ring-2" />
-                        <div className="cosmic-ring-3" />
-
                         {/* Photo frame */}
                         <div className="photo-frame-space relative z-10">
                             <Image
@@ -238,10 +275,6 @@ const PixelRoom = ({ greetingText }: PixelRoomProps) => {
                                 priority
                             />
                         </div>
-
-                        {/* Floating light particles */}
-                        <div className="absolute -bottom-8 -left-8 w-32 h-32 bg-[var(--accent-cyan)] rounded-full opacity-20 blur-3xl animate-pulse-slow" />
-                        <div className="absolute -top-8 -right-8 w-24 h-24 bg-[var(--accent-primary)] rounded-full opacity-25 blur-3xl animate-pulse-slower" />
                     </div>
                 </div>
             </div>

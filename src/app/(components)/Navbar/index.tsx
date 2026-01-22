@@ -96,10 +96,12 @@ export default function Navbar() {
 
                     {/* CTA Button - Desktop */}
                     <a
-                        href="mailto:arturka0505@gmail.com"
+                        href="https://road-track-landing.vercel.app"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="hidden md:flex btn-primary-space text-sm py-2 px-5"
                     >
-                        Hire Me
+                        Try My Product
                     </a>
 
                     {/* Mobile Menu Button */}
@@ -154,10 +156,12 @@ export default function Navbar() {
                             </li>
                             <li className="pt-4">
                                 <a
-                                    href="mailto:arturka0505@gmail.com"
+                                    href="https://road-track-landing.vercel.app"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     className="btn-primary-space w-full text-center"
                                 >
-                                    Hire Me
+                                    Try My Product
                                 </a>
                             </li>
                         </ul>
