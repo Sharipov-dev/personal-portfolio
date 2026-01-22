@@ -43,19 +43,19 @@ export default function Navbar() {
 
     return (
         <nav className={`fixed top-0 left-0 right-0 w-full z-50 transition-all duration-300 ${
-            isScrolled ? 'nav-modern py-3' : 'bg-transparent py-5'
+            isScrolled ? 'nav-space py-3' : 'bg-transparent py-5'
         }`}>
             <div className="container-responsive">
                 <div className="flex items-center justify-between">
-                    {/* Logo */}
+                    {/* Logo with cosmic effect */}
                     <div
                         className="cursor-pointer group"
                         onClick={() => scrollToSection('home')}
                     >
-                        <span className="font-semibold text-lg text-[var(--text-primary)] group-hover:text-[var(--accent-primary)] transition-colors">
+                        <span className="font-bold text-xl text-[var(--text-primary)] group-hover:text-[var(--accent-cyan)] transition-colors cosmic-glow">
                             Arthur
                         </span>
-                        <span className="text-[var(--accent-primary)]">.</span>
+                        <span className="text-[var(--accent-cyan)] text-2xl">.</span>
                     </div>
 
                     {/* Desktop Navigation */}
@@ -97,7 +97,7 @@ export default function Navbar() {
                     {/* CTA Button - Desktop */}
                     <a
                         href="mailto:arturka0505@gmail.com"
-                        className="hidden md:flex btn-primary text-sm py-2 px-5"
+                        className="hidden md:flex btn-primary-space text-sm py-2 px-5"
                     >
                         Hire Me
                     </a>
@@ -155,7 +155,7 @@ export default function Navbar() {
                             <li className="pt-4">
                                 <a
                                     href="mailto:arturka0505@gmail.com"
-                                    className="btn-primary w-full text-center"
+                                    className="btn-primary-space w-full text-center"
                                 >
                                     Hire Me
                                 </a>

@@ -5,6 +5,42 @@ import { getApiUrl } from "../config/api";
 import PixelRoom from "../(components)/PixelRoom";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
 
+const BackToTopButton = () => {
+    const [isVisible, setIsVisible] = useState(false);
+
+    useEffect(() => {
+        const toggleVisibility = () => {
+            if (window.pageYOffset > 500) {
+                setIsVisible(true);
+            } else {
+                setIsVisible(false);
+            }
+        };
+
+        window.addEventListener('scroll', toggleVisibility);
+        return () => window.removeEventListener('scroll', toggleVisibility);
+    }, []);
+
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    };
+
+    return (
+        <button
+            onClick={scrollToTop}
+            className={`fixed bottom-8 right-8 z-50 w-14 h-14 rounded-full bg-gradient-to-br from-[rgba(34,211,238,0.3)] to-[rgba(139,92,246,0.3)] backdrop-blur-xl border-2 border-[var(--accent-cyan)] flex items-center justify-center text-2xl transition-all duration-500 hover:scale-110 hover:rotate-12 cosmic-glow-border ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16 pointer-events-none'
+            }`}
+            aria-label="Back to top"
+        >
+            🚀
+        </button>
+    );
+};
+
 interface Experience {
     company: string;
     position: string;
@@ -79,7 +115,14 @@ const HomePage = () => {
     ];
 
     return (
-        <div className="w-full min-h-screen bg-[var(--bg-primary)]">
+        <div className="w-full min-h-screen relative">
+            {/* Cosmic dust particles */}
+            <div className="cosmic-dust-container">
+                <div className="cosmic-dust cosmic-dust-1" />
+                <div className="cosmic-dust cosmic-dust-2" />
+                <div className="cosmic-dust cosmic-dust-3" />
+            </div>
+
             {/* Hero Section with Pixel Room */}
             <section id="home">
                 <PixelRoom greetingText={greetingText} />
@@ -87,8 +130,8 @@ const HomePage = () => {
 
             {/* Experience Section */}
             <section id="experience" className="py-20 md:py-32 relative">
-                {/* Decorative sprite */}
-                <div className="absolute top-20 right-10 opacity-30 hidden lg:block">
+                {/* Decorative bouncing planet sprite */}
+                <div className="absolute top-20 right-10 opacity-40 hidden lg:block bounce-slow">
                     <Image
                         src="/images/pixelImage/bookshelve.png"
                         alt=""
@@ -153,8 +196,8 @@ const HomePage = () => {
 
             {/* Projects Section */}
             <section id="projects" className="py-20 md:py-32 relative">
-                {/* Decorative sprites */}
-                <div className="absolute top-24 left-10 opacity-25 hidden lg:block float-sprite">
+                {/* Decorative bouncing planet sprites */}
+                <div className="absolute top-24 left-10 opacity-35 hidden lg:block bounce-medium">
                     <Image
                         src="/images/pixelImage/table.png"
                         alt=""
@@ -163,12 +206,12 @@ const HomePage = () => {
                         className="pixel-sprite"
                     />
                 </div>
-                <div className="absolute bottom-24 right-10 opacity-25 hidden lg:block float-sprite-delayed">
+                <div className="absolute bottom-24 right-10 opacity-35 hidden lg:block bounce-fast">
                     <Image
-                        src="/images/pixelImage/crates.png"
+                        src="/images/pixelImage/shelve.png"
                         alt=""
-                        width={60}
-                        height={60}
+                        width={80}
+                        height={100}
                         className="pixel-sprite"
                     />
                 </div>
@@ -253,22 +296,22 @@ const HomePage = () => {
 
             {/* Contact Section */}
             <section id="contact" className="py-20 md:py-32 relative">
-                {/* Decorative window */}
-                <div className="absolute top-1/2 left-10 -translate-y-1/2 opacity-30 hidden lg:block glow-warm">
+                {/* Decorative bouncing planet sprites */}
+                <div className="absolute top-1/2 left-10 -translate-y-1/2 opacity-35 hidden lg:block bounce-slow">
                     <Image
-                        src="/images/pixelImage/window.png"
+                        src="/images/pixelImage/bed.png"
                         alt=""
-                        width={80}
-                        height={80}
+                        width={100}
+                        height={60}
                         className="pixel-sprite"
                     />
                 </div>
-                <div className="absolute top-1/2 right-10 -translate-y-1/2 opacity-30 hidden lg:block glow-warm">
+                <div className="absolute top-1/2 right-10 -translate-y-1/2 opacity-35 hidden lg:block bounce-medium">
                     <Image
-                        src="/images/pixelImage/window2.png"
+                        src="/images/pixelImage/painting.png"
                         alt=""
-                        width={80}
-                        height={80}
+                        width={60}
+                        height={75}
                         className="pixel-sprite"
                     />
                 </div>
@@ -323,27 +366,35 @@ const HomePage = () => {
             </section>
 
             {/* Footer */}
-            <footer className="py-8 border-t border-[var(--border-color)]">
-                <div className="container-responsive">
-                    <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-                        <p className="text-sm text-[var(--text-muted)]">
-                            &copy; 2025 Arthur Sharipov. Built with Next.js & pixels of love.
+            <footer className="py-12 border-t-2 border-[rgba(34,211,238,0.2)] relative">
+                {/* Footer background glow */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[rgba(34,211,238,0.05)] to-transparent pointer-events-none" />
+                
+                <div className="container-responsive relative z-10">
+                    <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+                        <p className="text-sm text-[var(--text-secondary)] cosmic-glow">
+                            &copy; 2025 Arthur Sharipov. Built with Next.js & cosmic energy.
                         </p>
-                        <div className="flex items-center gap-2">
-                            <Image
-                                src="/images/pixelImage/painting.png"
-                                alt=""
-                                width={24}
-                                height={30}
-                                className="pixel-sprite opacity-60"
-                            />
-                            <span className="text-xs text-[var(--text-muted)]">
-                                Crafted with care
+                        <div className="flex items-center gap-3">
+                            <div className="bounce-fast opacity-70">
+                                <Image
+                                    src="/images/pixelImage/painting.png"
+                                    alt=""
+                                    width={28}
+                                    height={35}
+                                    className="pixel-sprite"
+                                />
+                            </div>
+                            <span className="text-xs text-[var(--accent-cyan)] font-medium">
+                                Crafted in the cosmos
                             </span>
                         </div>
                     </div>
                 </div>
             </footer>
+
+            {/* Back to Top Button */}
+            <BackToTopButton />
         </div>
     );
 };
