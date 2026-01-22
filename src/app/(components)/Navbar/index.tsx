@@ -1,22 +1,30 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { getApiUrl } from '../../config/api';
 
 export default function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
     const [navData, setNavData] = useState({
-        aboutMe: 'About Me',
+        aboutMe: 'About',
         experience: 'Experience',
         projects: 'Projects',
         contact: 'Contact'
     });
 
-    useState(() => {
+    useEffect(() => {
         fetch(getApiUrl('/values/values.json'))
             .then(res => res.json())
             .then(data => setNavData(data.navigation))
             .catch(err => console.error('Failed to fetch navigation data:', err));
-    });
+
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 50);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -25,7 +33,7 @@ export default function Navbar() {
     const scrollToSection = (sectionId: string) => {
         const element = document.getElementById(sectionId);
         if (element) {
-            element.scrollIntoView({ 
+            element.scrollIntoView({
                 behavior: 'smooth',
                 block: 'start'
             });
@@ -34,81 +42,126 @@ export default function Navbar() {
     };
 
     return (
-        <nav className="fixed top-0 left-0 right-0 w-full bg-white text-black shadow-2xl py-4 z-50 min-h-[70px]">
+        <nav className={`fixed top-0 left-0 right-0 w-full z-50 transition-all duration-300 ${
+            isScrolled ? 'nav-modern py-3' : 'bg-transparent py-5'
+        }`}>
             <div className="container-responsive">
                 <div className="flex items-center justify-between">
-                    <div 
-                        className="text-xl font-bold cursor-pointer  transition-colors duration-200"
+                    {/* Logo */}
+                    <div
+                        className="cursor-pointer group"
                         onClick={() => scrollToSection('home')}
                     >
-                        Portfolio
+                        <span className="font-semibold text-lg text-[var(--text-primary)] group-hover:text-[var(--accent-primary)] transition-colors">
+                            Arthur
+                        </span>
+                        <span className="text-[var(--accent-primary)]">.</span>
                     </div>
 
-                    <ul className="hidden md:flex flex-row gap-8 lg:gap-20 items-center justify-between font-bold tracking-wide text-base lg:text-lg">
-                        <li 
-                            className="cursor-pointer  transition-colors duration-200"
-                            onClick={() => scrollToSection('home')}
-                        >
-                            {navData.aboutMe.toUpperCase()}
+                    {/* Desktop Navigation */}
+                    <ul className="hidden md:flex flex-row gap-1 items-center">
+                        <li>
+                            <button
+                                className="nav-link"
+                                onClick={() => scrollToSection('home')}
+                            >
+                                Home
+                            </button>
                         </li>
-                        <li 
-                            className="cursor-pointer  transition-colors duration-200"
-                            onClick={() => scrollToSection('experience')}
-                        >
-                            {navData.experience.toUpperCase()}
+                        <li>
+                            <button
+                                className="nav-link"
+                                onClick={() => scrollToSection('experience')}
+                            >
+                                {navData.experience}
+                            </button>
                         </li>
-                        <li 
-                            className="cursor-pointer  transition-colors duration-200"
-                            onClick={() => scrollToSection('projects')}
-                        >
-                            {navData.projects.toUpperCase()}
+                        <li>
+                            <button
+                                className="nav-link"
+                                onClick={() => scrollToSection('projects')}
+                            >
+                                {navData.projects}
+                            </button>
                         </li>
-                        <li 
-                            className="cursor-pointer  transition-colors duration-200"
-                            onClick={() => scrollToSection('contact')}
-                        >
-                            {navData.contact.toUpperCase()}
+                        <li>
+                            <button
+                                className="nav-link"
+                                onClick={() => scrollToSection('contact')}
+                            >
+                                {navData.contact}
+                            </button>
                         </li>
                     </ul>
 
+                    {/* CTA Button - Desktop */}
+                    <a
+                        href="mailto:arturka0505@gmail.com"
+                        className="hidden md:flex btn-primary text-sm py-2 px-5"
+                    >
+                        Hire Me
+                    </a>
+
+                    {/* Mobile Menu Button */}
                     <button
                         onClick={toggleMenu}
-                        className="md:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1"
+                        className="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5"
                         aria-label="Toggle menu"
                     >
-                        <span className={`block w-6 h-0.5 bg-black transition-all duration-300 ${isMenuOpen ? 'rotate-45 translate-y-1.5' : ''}`}></span>
-                        <span className={`block w-6 h-0.5 bg-black transition-all duration-300 ${isMenuOpen ? 'opacity-0' : ''}`}></span>
-                        <span className={`block w-6 h-0.5 bg-black transition-all duration-300 ${isMenuOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></span>
+                        <span className={`block w-6 h-0.5 bg-[var(--text-primary)] transition-all duration-300 ${isMenuOpen ? 'rotate-45 translate-y-2' : ''}`} />
+                        <span className={`block w-6 h-0.5 bg-[var(--text-primary)] transition-all duration-300 ${isMenuOpen ? 'opacity-0' : ''}`} />
+                        <span className={`block w-6 h-0.5 bg-[var(--text-primary)] transition-all duration-300 ${isMenuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
                     </button>
                 </div>
 
-                <div className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'} mt-4 pb-4 border-t border-gray-700`}>
-                    <ul className="flex flex-col space-y-4 pt-4">
-                        <li 
-                            className="cursor-pointer  transition-colors duration-200 text-center"
-                            onClick={() => scrollToSection('home')}
-                        >
-                            {navData.aboutMe.toUpperCase()}
-                        </li>
-                        <li 
-                            className="cursor-pointer  transition-colors duration-200 text-center"
-                            onClick={() => scrollToSection('experience')}
-                        >
-                            {navData.experience.toUpperCase()}
-                        </li>
-                        <li 
-                            className="cursor-pointer  transition-colors duration-200 text-center"
-                            onClick={() => scrollToSection('projects')}
-                        >
-                            {navData.projects.toUpperCase()}
-                        </li>
-                        <li 
-                            className="cursor-pointer  transition-colors duration-200 text-center"
-                            onClick={() => scrollToSection('contact')}
-                        >
-                            {navData.contact.toUpperCase()}
-                        </li>
-                    </ul>
+                {/* Mobile Menu */}
+                <div className={`md:hidden transition-all duration-300 overflow-hidden ${
+                    isMenuOpen ? 'max-h-96 opacity-100 mt-4' : 'max-h-0 opacity-0'
+                }`}>
+                    <div className="glass-card p-6">
+                        <ul className="flex flex-col space-y-2">
+                            <li>
+                                <button
+                                    className="nav-link w-full text-left"
+                                    onClick={() => scrollToSection('home')}
+                                >
+                                    Home
+                                </button>
+                            </li>
+                            <li>
+                                <button
+                                    className="nav-link w-full text-left"
+                                    onClick={() => scrollToSection('experience')}
+                                >
+                                    {navData.experience}
+                                </button>
+                            </li>
+                            <li>
+                                <button
+                                    className="nav-link w-full text-left"
+                                    onClick={() => scrollToSection('projects')}
+                                >
+                                    {navData.projects}
+                                </button>
+                            </li>
+                            <li>
+                                <button
+                                    className="nav-link w-full text-left"
+                                    onClick={() => scrollToSection('contact')}
+                                >
+                                    {navData.contact}
+                                </button>
+                            </li>
+                            <li className="pt-4">
+                                <a
+                                    href="mailto:arturka0505@gmail.com"
+                                    className="btn-primary w-full text-center"
+                                >
+                                    Hire Me
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </nav>
