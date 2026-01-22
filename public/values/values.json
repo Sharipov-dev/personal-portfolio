@@ -18,7 +18,14 @@
         "experience": [
             {
                 "company": "Borderworx Logistics",
-                "position": "Software Developer Co-op (Part-time)",
+                "position": "Software Developer (Part-time)",
+                "date": "January 2026 - Present",
+                "location": "Ontario, Canada",
+                "description": "Continuously maintain and enhance the WMS platform using Next.js and Node.js, adding new features based on evolving warehouse requirements. Working closely with the operations team to ensure the system scales efficiently and meets the growing demands of logistics management."
+            },
+            {
+                "company": "Borderworx Logistics",
+                "position": "Software Developer Co-op",
                 "date": "September 2025 - December 2025",
                 "location": "Ontario, Canada",
                 "description": "At Borderworx Logistics, I developed a responsive company website using Next.js, React, HTML, and CSS, significantly improving the company's online presence and client engagement. I built a full-stack Warehouse Management System (WMS) using Next.js for the frontend and Node.js with Express for the backend to efficiently manage inventory, shipments, and warehouse operations. I designed and integrated a scalable database using PostgreSQL/MongoDB, ensuring accurate tracking of products, orders, and logistics data across the entire supply chain."
