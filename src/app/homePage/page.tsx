@@ -91,11 +91,11 @@ const HomePage = () => {
     const projects = [
         {
             id: 1,
-            title: "Personal Portfolio",
-            description: "A modern, responsive portfolio website built with Next.js and Tailwind CSS. Features smooth animations, pixel art decorations, and mobile-first design.",
-            technologies: ["Next.js", "TypeScript", "Tailwind CSS"],
-            link: "#",
-            github: "https://github.com/Sharipov-dev/personal-portfolio"
+            title: "Developer CRM",
+            description: "A Node.js + TypeScript backend API built with Express and Clean Architecture. Features JWT authentication, PostgreSQL with Prisma, Swagger docs, and comprehensive testing with Vitest.",
+            technologies: ["Node.js", "TypeScript", "Express", "PostgreSQL", "Prisma", "Docker"],
+            link: "https://github.com/Sharipov-dev/developers-crm",
+            github: "https://github.com/Sharipov-dev/developers-crm"
         },
         {
             id: 2,
